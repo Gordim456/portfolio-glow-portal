@@ -132,7 +132,7 @@ const Index = () => {
 
       <footer className="bg-white border-t border-gray-100 py-8">
         <div className="container mx-auto px-4 text-center text-gray-600">
-          <p>&copy; 2024 DevSolutions. Todos os direitos reservados.</p>
+          <p>&copy; 2024 GV Software. Todos os direitos reservados.</p>
         </div>
       </footer>
 
