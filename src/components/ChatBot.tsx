@@ -12,65 +12,38 @@ interface UserInfo {
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const [currentField, setCurrentField] = useState<keyof UserInfo | null>("firstName");
-  const [input, setInput] = useState("");
+  const [showForm, setShowForm] = useState(true);
+  const [formData, setFormData] = useState<UserInfo>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    reason: ""
+  });
+
   const [messages, setMessages] = useState([
     { 
-      text: "Olá! Para melhor atendê-lo, precisarei de algumas informações. Qual é o seu nome?", 
+      text: "Olá! Como posso ajudar você hoje?", 
       isBot: true 
     }
   ]);
+  const [input, setInput] = useState("");
 
-  const handleUserInfoInput = (value: string) => {
-    if (!currentField) return;
-
-    const newInfo = {
-      ...(userInfo || {}),
-      [currentField]: value,
-    } as UserInfo;
-
-    setUserInfo(newInfo);
-    setInput("");
-
-    let nextMessage = "";
-    let nextField: keyof UserInfo | null = null;
-
-    switch (currentField) {
-      case "firstName":
-        nextMessage = `Prazer em conhecê-lo, ${value}! Qual é o seu sobrenome?`;
-        nextField = "lastName";
-        break;
-      case "lastName":
-        nextMessage = "Ótimo! Agora preciso do seu e-mail para contato:";
-        nextField = "email";
-        break;
-      case "email":
-        nextMessage = "Por fim, qual o motivo do seu contato hoje?";
-        nextField = "reason";
-        break;
-      case "reason":
-        nextMessage = `Perfeito! Agora posso ajudá-lo melhor.\n\nPosso auxiliar com:\n• Informações sobre nossos serviços\n• Orçamentos\n• Suporte técnico\n• Agendamento de reuniões`;
-        nextField = null;
-        break;
-    }
-
-    setMessages(prev => [...prev, 
-      { text: value, isBot: false },
-      { text: nextMessage, isBot: true }
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setUserInfo(formData);
+    setShowForm(false);
+    setMessages([
+      { 
+        text: `Olá ${formData.firstName}! Como posso ajudar você hoje?\n\nPosso auxiliar com:\n• Informações sobre nossos serviços\n• Orçamentos\n• Suporte técnico\n• Agendamento de reuniões`, 
+        isBot: true 
+      }
     ]);
-    setCurrentField(nextField);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChatSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    if (currentField) {
-      handleUserInfoInput(input.trim());
-      return;
-    }
-
-    // Regular chat flow after collecting user info
     setMessages(prev => [...prev, { text: input, isBot: false }]);
     setInput("");
 
@@ -117,57 +90,105 @@ const ChatBot = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-gray-50">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${
-                  message.isBot ? "justify-start" : "justify-end"
-                }`}
-              >
-                <div
-                  className={`max-w-[80%] p-3 rounded-2xl ${
-                    message.isBot
-                      ? "bg-white text-gray-800 shadow-sm"
-                      : "bg-primary text-white"
-                  } ${
-                    message.isBot
-                      ? "rounded-tl-sm"
-                      : "rounded-tr-sm"
-                  }`}
-                >
-                  <p className="whitespace-pre-line">{message.text}</p>
+            {showForm ? (
+              <form onSubmit={handleFormSubmit} className="space-y-4 bg-white p-4 rounded-xl shadow-sm">
+                <h4 className="font-medium text-gray-700">Para melhor atendê-lo, por favor preencha:</h4>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Seu nome"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                  />
                 </div>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Seu sobrenome"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Seu email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Motivo do contato"
+                    value={formData.reason}
+                    onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
+                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary resize-none h-20"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                >
+                  Iniciar Conversa
+                </button>
+              </form>
+            ) : (
+              <div className="space-y-4">
+                {messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${
+                      message.isBot ? "justify-start" : "justify-end"
+                    }`}
+                  >
+                    <div
+                      className={`max-w-[80%] p-3 rounded-2xl ${
+                        message.isBot
+                          ? "bg-white text-gray-800 shadow-sm"
+                          : "bg-primary text-white"
+                      } ${
+                        message.isBot
+                          ? "rounded-tl-sm"
+                          : "rounded-tr-sm"
+                      }`}
+                    >
+                      <p className="whitespace-pre-line">{message.text}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
 
           {/* Input form */}
-          <form onSubmit={handleSubmit} className="p-4 bg-white rounded-b-2xl border-t border-gray-100">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={
-                  currentField === "firstName" ? "Digite seu nome..." :
-                  currentField === "lastName" ? "Digite seu sobrenome..." :
-                  currentField === "email" ? "Digite seu email..." :
-                  currentField === "reason" ? "Digite o motivo do contato..." :
-                  "Digite sua mensagem..."
-                }
-                className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-              />
-              <button
-                type="submit"
-                className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={!input.trim()}
-              >
-                <Send className="w-5 h-5" />
-              </button>
-            </div>
-          </form>
+          {!showForm && (
+            <form onSubmit={handleChatSubmit} className="p-4 bg-white rounded-b-2xl border-t border-gray-100">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Digite sua mensagem..."
+                  className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                />
+                <button
+                  type="submit"
+                  className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!input.trim()}
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              </div>
+            </form>
+          )}
         </div>
       )}
     </>
@@ -175,3 +196,4 @@ const ChatBot = () => {
 };
 
 export default ChatBot;
+
