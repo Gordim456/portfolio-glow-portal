@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MessageSquare, X, Send } from "lucide-react";
 
 interface UserInfo {
@@ -41,14 +40,12 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState("");
 
-  // Salvar no localStorage
   const saveToLocalStorage = (conversation: Conversation) => {
     const conversations = JSON.parse(localStorage.getItem('chatbot-conversations') || '[]');
     conversations.push(conversation);
     localStorage.setItem('chatbot-conversations', JSON.stringify(conversations));
   };
 
-  // Salvar no JSON Server
   const saveToServer = async (conversation: Conversation) => {
     try {
       const response = await fetch('http://localhost:3001/conversations', {
@@ -61,7 +58,6 @@ const ChatBot = () => {
       if (!response.ok) throw new Error('Erro ao salvar conversa');
     } catch (error) {
       console.error('Erro ao salvar no servidor:', error);
-      // Fallback para localStorage se o servidor estiver indisponível
       saveToLocalStorage(conversation);
     }
   };
@@ -79,7 +75,6 @@ const ChatBot = () => {
 
     setMessages([initialMessage]);
 
-    // Salvar conversa inicial
     const conversation: Conversation = {
       userInfo: formData,
       messages: [initialMessage],
@@ -119,7 +114,6 @@ const ChatBot = () => {
       setMessages(prev => {
         const updatedMessages = [...prev, botResponse];
         
-        // Salvar conversa atualizada
         const conversation: Conversation = {
           userInfo,
           messages: updatedMessages,
@@ -136,131 +130,125 @@ const ChatBot = () => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 hover:scale-110 z-50"
+        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 hover:scale-110 z-50 group"
       >
-        <MessageSquare className="w-6 h-6" />
+        <MessageSquare className="w-6 h-6 animate-pulse" />
       </button>
 
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 animate-slideIn z-50">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-primary text-white rounded-t-2xl">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                <MessageSquare className="w-5 h-5" />
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-all duration-300 animate-fadeIn">
+          <div className="fixed bottom-6 right-6 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 animate-slideIn z-50">
+            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded-t-2xl">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">Assistente GV Software</h3>
+                  <span className="text-xs text-white/80">Online</span>
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold">Assistente GV Software</h3>
-                <span className="text-xs text-white/80">Online</span>
-              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-white/80 hover:text-white transition-colors hover:rotate-90 duration-300"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white/80 hover:text-white transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
 
-          <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-gray-50">
-            {showForm ? (
-              <form onSubmit={handleFormSubmit} className="space-y-4 bg-white p-4 rounded-xl shadow-sm">
-                <h4 className="font-medium text-gray-700">Para melhor atendê-lo, por favor preencha:</h4>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Seu nome"
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Seu sobrenome"
-                    value={formData.lastName}
-                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Seu email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
-                    required
-                  />
-                </div>
-                <div>
-                  <textarea
-                    placeholder="Motivo do contato"
-                    value={formData.reason}
-                    onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                    className="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary resize-none h-20"
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  Iniciar Conversa
-                </button>
-              </form>
-            ) : (
-              <div className="space-y-4">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${
-                      message.isBot ? "justify-start" : "justify-end"
-                    }`}
-                  >
-                    <div
-                      className={`max-w-[80%] p-3 rounded-2xl ${
-                        message.isBot
-                          ? "bg-white text-gray-800 shadow-sm"
-                          : "bg-primary text-white"
-                      } ${
-                        message.isBot
-                          ? "rounded-tl-sm"
-                          : "rounded-tr-sm"
-                      }`}
-                    >
-                      <p className="whitespace-pre-line">{message.text}</p>
-                    </div>
+            <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-gray-50/50">
+              {showForm ? (
+                <form onSubmit={handleFormSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-sm animate-fadeIn">
+                  <h4 className="font-medium text-gray-700 text-lg">Para melhor atendê-lo, por favor preencha:</h4>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Seu nome"
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Seu sobrenome"
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                      required
+                    />
+                    <input
+                      type="email"
+                      placeholder="Seu email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                      required
+                    />
+                    <textarea
+                      placeholder="Motivo do contato"
+                      value={formData.reason}
+                      onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 resize-none h-24"
+                      required
+                    />
                   </div>
-                ))}
-              </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg font-medium"
+                  >
+                    Iniciar Conversa
+                  </button>
+                </form>
+              ) : (
+                <div className="space-y-4">
+                  {messages.map((message, index) => (
+                    <div
+                      key={index}
+                      className={`flex ${
+                        message.isBot ? "justify-start" : "justify-end"
+                      } animate-fadeIn`}
+                    >
+                      <div
+                        className={`max-w-[80%] p-4 rounded-2xl ${
+                          message.isBot
+                            ? "bg-white text-gray-800 shadow-sm"
+                            : "bg-primary text-white"
+                        } ${
+                          message.isBot
+                            ? "rounded-tl-sm"
+                            : "rounded-tr-sm"
+                        } transform transition-all duration-300 hover:scale-[1.02]`}
+                      >
+                        <p className="whitespace-pre-line">{message.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {!showForm && (
+              <form onSubmit={handleChatSubmit} className="p-4 bg-white rounded-b-2xl border-t border-gray-100">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Digite sua mensagem..."
+                    className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+                  />
+                  <button
+                    type="submit"
+                    className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 hover:shadow-lg"
+                    disabled={!input.trim()}
+                  >
+                    <Send className="w-5 h-5" />
+                  </button>
+                </div>
+              </form>
             )}
           </div>
-
-          {/* Input form */}
-          {!showForm && (
-            <form onSubmit={handleChatSubmit} className="p-4 bg-white rounded-b-2xl border-t border-gray-100">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Digite sua mensagem..."
-                  className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                />
-                <button
-                  type="submit"
-                  className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={!input.trim()}
-                >
-                  <Send className="w-5 h-5" />
-                </button>
-              </div>
-            </form>
-          )}
         </div>
       )}
     </>
