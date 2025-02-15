@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MessageSquare, X, Send } from "lucide-react";
 
 interface UserInfo {
@@ -7,6 +7,18 @@ interface UserInfo {
   lastName: string;
   email: string;
   reason: string;
+}
+
+interface ChatMessage {
+  text: string;
+  isBot: boolean;
+  timestamp: string;
+}
+
+interface Conversation {
+  userInfo: UserInfo;
+  messages: ChatMessage[];
+  id?: number;
 }
 
 const ChatBot = () => {
@@ -20,43 +32,103 @@ const ChatBot = () => {
     reason: ""
   });
 
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<ChatMessage[]>([
     { 
       text: "Olá! Como posso ajudar você hoje?", 
-      isBot: true 
+      isBot: true,
+      timestamp: new Date().toISOString()
     }
   ]);
   const [input, setInput] = useState("");
+
+  // Salvar no localStorage
+  const saveToLocalStorage = (conversation: Conversation) => {
+    const conversations = JSON.parse(localStorage.getItem('chatbot-conversations') || '[]');
+    conversations.push(conversation);
+    localStorage.setItem('chatbot-conversations', JSON.stringify(conversations));
+  };
+
+  // Salvar no JSON Server
+  const saveToServer = async (conversation: Conversation) => {
+    try {
+      const response = await fetch('http://localhost:3001/conversations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(conversation),
+      });
+      if (!response.ok) throw new Error('Erro ao salvar conversa');
+    } catch (error) {
+      console.error('Erro ao salvar no servidor:', error);
+      // Fallback para localStorage se o servidor estiver indisponível
+      saveToLocalStorage(conversation);
+    }
+  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setUserInfo(formData);
     setShowForm(false);
-    setMessages([
-      { 
-        text: `Olá ${formData.firstName}! Como posso ajudar você hoje?\n\nPosso auxiliar com:\n• Informações sobre nossos serviços\n• Orçamentos\n• Suporte técnico\n• Agendamento de reuniões`, 
-        isBot: true 
-      }
-    ]);
+    
+    const initialMessage: ChatMessage = { 
+      text: `Olá ${formData.firstName}! Como posso ajudar você hoje?\n\nPosso auxiliar com:\n• Informações sobre nossos serviços\n• Orçamentos\n• Suporte técnico\n• Agendamento de reuniões`, 
+      isBot: true,
+      timestamp: new Date().toISOString()
+    };
+
+    setMessages([initialMessage]);
+
+    // Salvar conversa inicial
+    const conversation: Conversation = {
+      userInfo: formData,
+      messages: [initialMessage],
+    };
+
+    saveToServer(conversation).catch(() => saveToLocalStorage(conversation));
   };
 
   const handleChatSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || !userInfo) return;
 
-    setMessages(prev => [...prev, { text: input, isBot: false }]);
+    const userMessage: ChatMessage = {
+      text: input,
+      isBot: false,
+      timestamp: new Date().toISOString()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
     setInput("");
 
     setTimeout(() => {
-      let response = `Obrigado pelo contato, ${userInfo?.firstName}! Um de nossos especialistas entrará em contato através do email ${userInfo?.email} para fornecer todas as informações necessárias.`;
+      let responseText = `Obrigado pelo contato, ${userInfo.firstName}! Um de nossos especialistas entrará em contato através do email ${userInfo.email} para fornecer todas as informações necessárias.`;
       
       if (input.toLowerCase().includes("preço") || input.toLowerCase().includes("custo") || input.toLowerCase().includes("valor")) {
-        response = "Os valores são personalizados de acordo com as necessidades de cada projeto. Podemos agendar uma reunião para discutir os detalhes?";
+        responseText = "Os valores são personalizados de acordo com as necessidades de cada projeto. Podemos agendar uma reunião para discutir os detalhes?";
       } else if (input.toLowerCase().includes("prazo") || input.toLowerCase().includes("tempo")) {
-        response = "O prazo de desenvolvimento varia conforme a complexidade do projeto. Podemos fazer uma análise detalhada para fornecer uma estimativa precisa.";
+        responseText = "O prazo de desenvolvimento varia conforme a complexidade do projeto. Podemos fazer uma análise detalhada para fornecer uma estimativa precisa.";
       }
 
-      setMessages(prev => [...prev, { text: response, isBot: true }]);
+      const botResponse: ChatMessage = {
+        text: responseText,
+        isBot: true,
+        timestamp: new Date().toISOString()
+      };
+
+      setMessages(prev => {
+        const updatedMessages = [...prev, botResponse];
+        
+        // Salvar conversa atualizada
+        const conversation: Conversation = {
+          userInfo,
+          messages: updatedMessages,
+        };
+        
+        saveToServer(conversation).catch(() => saveToLocalStorage(conversation));
+        
+        return updatedMessages;
+      });
     }, 1000);
   };
 
@@ -196,4 +268,3 @@ const ChatBot = () => {
 };
 
 export default ChatBot;
-
