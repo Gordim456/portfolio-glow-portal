@@ -1,8 +1,7 @@
-
 import Header from "@/components/Header";
 import ImageSlider from "@/components/ImageSlider";
 import ChatBot from "@/components/ChatBot";
-import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin } from "lucide-react";
+import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase } from "lucide-react";
 
 const Index = () => {
   return (
@@ -66,46 +65,94 @@ const Index = () => {
           </div>
         </section>
 
+        <section className="py-16 bg-blue-50">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-4 gap-8 text-center">
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-8 h-8 text-blue-600" />
+                </div>
+                <h4 className="text-2xl font-bold text-blue-900">250+</h4>
+                <p className="text-gray-600">Projetos Entregues</p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-blue-600" />
+                </div>
+                <h4 className="text-2xl font-bold text-blue-900">100+</h4>
+                <p className="text-gray-600">Clientes Satisfeitos</p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-blue-600" />
+                </div>
+                <h4 className="text-2xl font-bold text-blue-900">10+</h4>
+                <p className="text-gray-600">Anos de Experiência</p>
+              </div>
+              <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-blue-600" />
+                </div>
+                <h4 className="text-2xl font-bold text-blue-900">98%</h4>
+                <p className="text-gray-600">Taxa de Satisfação</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="portfolio" className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <span className="text-primary font-semibold">Portfólio</span>
-              <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                Nossos Projetos
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Briefcase className="w-6 h-6 text-blue-600" />
+                <span className="text-blue-600 font-semibold">Nosso Portfólio</span>
+              </div>
+              <h2 className="text-4xl font-bold mt-2 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Projetos em Destaque
               </h2>
+              <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                Conheça alguns dos nossos projetos mais recentes e descubra como ajudamos empresas 
+                a alcançarem seus objetivos através de soluções tecnológicas inovadoras.
+              </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   title: "E-commerce Premium",
-                  desc: "Plataforma completa de vendas online",
-                  img: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+                  desc: "Plataforma completa de vendas online com integração de pagamentos, gestão de estoque e análise de dados em tempo real.",
+                  img: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
+                  tags: ["React", "Node.js", "MongoDB"]
                 },
                 {
                   title: "App de Gestão",
-                  desc: "Sistema integrado de gestão empresarial",
-                  img: "https://images.unsplash.com/photo-1483058712412-4245e9b90334"
+                  desc: "Sistema integrado de gestão empresarial com módulos de RH, financeiro, vendas e relatórios personalizados.",
+                  img: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
+                  tags: ["React Native", "Firebase", "Redux"]
                 },
                 {
                   title: "Marketing Digital",
-                  desc: "Plataforma de automação de marketing",
-                  img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                  desc: "Plataforma de automação de marketing com análise de campanhas, segmentação de público e integração com redes sociais.",
+                  img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+                  tags: ["Vue.js", "Python", "AWS"]
                 },
                 {
                   title: "Dashboard Analytics",
-                  desc: "Painel de análise de dados em tempo real",
-                  img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+                  desc: "Painel de análise de dados em tempo real com visualizações interativas e relatórios automatizados.",
+                  img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+                  tags: ["Next.js", "TypeScript", "PostgreSQL"]
                 },
                 {
                   title: "Sistema de CRM",
-                  desc: "Gestão completa de relacionamento com clientes",
-                  img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+                  desc: "Gestão completa de relacionamento com clientes, incluindo pipeline de vendas e automação de follow-up.",
+                  img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+                  tags: ["Angular", "Java", "Spring Boot"]
                 },
                 {
                   title: "App Delivery",
-                  desc: "Aplicativo de entrega sob demanda",
-                  img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
+                  desc: "Aplicativo de entrega sob demanda com rastreamento em tempo real e sistema de avaliação.",
+                  img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+                  tags: ["Flutter", "NodeJS", "MongoDB"]
                 }
               ].map((project, index) => (
                 <div
@@ -117,19 +164,37 @@ const Index = () => {
                     alt={project.title}
                     className="w-full h-72 object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-8">
-                    <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-white/90">{project.desc}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-white/90 mb-4">{project.desc}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span 
+                          key={tagIndex}
+                          className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm text-white"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+
+            <div className="mt-16 text-center">
+              <a 
+                href="#contact"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+              >
+                <span>Comece seu projeto</span>
+                <Check className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </section>
 
-        <section id="contact" className="py-20 bg-gradient-to-b from-white to-secondary/20">
+        <section id="contact" className="py-20 bg-gradient-to-b from-white to-blue-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-16">
@@ -204,17 +269,53 @@ const Index = () => {
         </section>
       </main>
 
-      <footer className="bg-white border-t border-gray-100 py-12">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-4">
-            <span className="text-2xl font-bold text-primary">GV Software</span>
+      <footer className="bg-blue-900 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-2xl font-bold mb-6">GV Software</h3>
+              <p className="text-blue-100 mb-6">
+                Transformando ideias em soluções digitais inovadoras. 
+                Especialistas em desenvolvimento de software e consultoria em tecnologia.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                  {/* Ícone LinkedIn */}
+                </a>
+                <a href="#" className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                  {/* Ícone GitHub */}
+                </a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-6">Links Rápidos</h4>
+              <ul className="space-y-4">
+                <li><a href="#home" className="text-blue-100 hover:text-white transition-colors">Início</a></li>
+                <li><a href="#about" className="text-blue-100 hover:text-white transition-colors">Sobre</a></li>
+                <li><a href="#portfolio" className="text-blue-100 hover:text-white transition-colors">Portfólio</a></li>
+                <li><a href="#contact" className="text-blue-100 hover:text-white transition-colors">Contato</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-6">Contato</h4>
+              <div className="space-y-4">
+                <p className="flex items-center gap-2 text-blue-100">
+                  <MapPin className="w-5 h-5" />
+                  <span>Rua Principal, 123, São Paulo, SP</span>
+                </p>
+                <p className="flex items-center gap-2 text-blue-100">
+                  <Mail className="w-5 h-5" />
+                  <span>contato@gvsoftware.com</span>
+                </p>
+                <p className="flex items-center gap-2 text-blue-100">
+                  <PhoneCall className="w-5 h-5" />
+                  <span>(11) 99999-9999</span>
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="text-gray-600 max-w-md mx-auto">
-            Transformando ideias em soluções digitais inovadoras. 
-            Especialistas em desenvolvimento de software e consultoria em tecnologia.
-          </p>
-          <div className="mt-8">
-            <p className="text-gray-500">&copy; 2024 GV Software. Todos os direitos reservados.</p>
+          <div className="mt-12 pt-8 border-t border-blue-800 text-center text-blue-100">
+            <p>&copy; 2024 GV Software. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
