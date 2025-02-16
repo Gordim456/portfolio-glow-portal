@@ -130,7 +130,7 @@ const ChatBot = () => {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300 hover:scale-110 z-50 group"
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-primary to-blue-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 group"
       >
         <MessageSquare className="w-6 h-6 animate-pulse" />
       </button>
@@ -138,14 +138,14 @@ const ChatBot = () => {
       {isOpen && (
         <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-all duration-300 animate-fadeIn">
           <div className="fixed bottom-6 right-6 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 animate-slideIn z-50">
-            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary to-primary/80 text-white rounded-t-2xl">
+            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-t-2xl">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Assistente GV Software</h3>
-                  <span className="text-xs text-white/80">Online</span>
+                  <h3 className="font-semibold">Assistente Virtual</h3>
+                  <span className="text-xs text-white/80">Online agora</span>
                 </div>
               </div>
               <button
@@ -156,17 +156,18 @@ const ChatBot = () => {
               </button>
             </div>
 
-            <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-gray-50/50">
+            <div className="h-[400px] overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-blue-50/50 to-white">
               {showForm ? (
                 <form onSubmit={handleFormSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-sm animate-fadeIn">
-                  <h4 className="font-medium text-gray-700 text-lg">Para melhor atendê-lo, por favor preencha:</h4>
+                  <h4 className="font-medium text-gray-700 text-lg">Bem-vindo ao nosso atendimento!</h4>
+                  <p className="text-sm text-gray-500 mb-4">Para melhor atendê-lo, por favor preencha:</p>
                   <div className="space-y-3">
                     <input
                       type="text"
                       placeholder="Seu nome"
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                       required
                     />
                     <input
@@ -174,7 +175,7 @@ const ChatBot = () => {
                       placeholder="Seu sobrenome"
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                       required
                     />
                     <input
@@ -182,20 +183,20 @@ const ChatBot = () => {
                       placeholder="Seu email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                       required
                     />
                     <textarea
-                      placeholder="Motivo do contato"
+                      placeholder="Como podemos ajudar?"
                       value={formData.reason}
                       onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 resize-none h-24"
+                      className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none h-24"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg font-medium"
+                    className="w-full bg-gradient-to-r from-primary to-blue-600 text-white py-3 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 font-medium"
                   >
                     Iniciar Conversa
                   </button>
@@ -213,7 +214,7 @@ const ChatBot = () => {
                         className={`max-w-[80%] p-4 rounded-2xl ${
                           message.isBot
                             ? "bg-white text-gray-800 shadow-sm"
-                            : "bg-primary text-white"
+                            : "bg-gradient-to-r from-primary to-blue-600 text-white"
                         } ${
                           message.isBot
                             ? "rounded-tl-sm"
@@ -236,11 +237,11 @@ const ChatBot = () => {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Digite sua mensagem..."
-                    className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+                    className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                   />
                   <button
                     type="submit"
-                    className="p-3 bg-primary text-white rounded-xl hover:bg-primary/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 hover:shadow-lg"
+                    className="p-3 bg-gradient-to-r from-primary to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105"
                     disabled={!input.trim()}
                   >
                     <Send className="w-5 h-5" />

@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  "/placeholder.svg",
   "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
-  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+  "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
+  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
 ];
 
 const ImageSlider = () => {
