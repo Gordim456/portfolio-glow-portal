@@ -181,25 +181,27 @@ Enquanto isso, você pode:
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-primary to-blue-600 text-white p-4 
-                   rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 
-                   z-50 group animate-bounce"
-      >
-        <MessageSquare className="w-6 h-6" />
-      </button>
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 to-blue-700 
+                     text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all 
+                     duration-500 hover:scale-110 z-50 animate-bounce"
+        >
+          <MessageSquare className="w-6 h-6" />
+        </button>
+      )}
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-all duration-300 
-                      animate-fadeIn">
-          <div className="fixed bottom-6 right-6 w-96 bg-white rounded-2xl shadow-2xl border 
-                        border-gray-100 animate-slideIn z-50">
-            <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary 
-                          to-blue-600 text-white rounded-t-2xl">
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 
+                      transition-all duration-500 animate-[fadeIn_0.5s_ease-out]">
+          <div className="fixed bottom-6 right-6 w-96 bg-white rounded-2xl shadow-2xl 
+                        border border-blue-100 animate-[slideIn_0.5s_ease-out] z-50">
+            <div className="flex items-center justify-between p-4 bg-gradient-to-r 
+                          from-blue-500 to-blue-700 text-white rounded-t-2xl">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center 
-                              backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center 
+                              justify-center backdrop-blur-sm">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
@@ -209,8 +211,8 @@ Enquanto isso, você pode:
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/80 hover:text-white transition-colors hover:rotate-90 
-                         duration-300"
+                className="text-white/80 hover:text-white transition-colors 
+                         hover:rotate-90 duration-300"
               >
                 <X className="w-5 h-5" />
               </button>
