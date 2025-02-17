@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { MessageSquare, X, Send, Sparkles, Star } from "lucide-react";
 
@@ -299,30 +300,32 @@ Como posso ajudar mais?`;
   return (
     <>
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 bg-gradient-to-br from-purple-600 via-blue-600 
-                     to-blue-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl 
-                     transition-all duration-500 hover:scale-110 z-50 animate-bounce 
+        <div className="fixed bottom-8 right-8 z-50">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="bg-gradient-to-br from-purple-600 via-blue-600 to-blue-700 
+                     text-white p-4 rounded-full shadow-lg hover:shadow-xl 
+                     transition-all duration-500 hover:scale-110
                      group relative"
-        >
-          <MessageSquare className="w-6 h-6" />
-          <span className="absolute -top-12 right-0 bg-white px-4 py-2 rounded-full 
+          >
+            <MessageSquare className="w-6 h-6" />
+            <span className="absolute -top-12 right-0 bg-white px-4 py-2 rounded-full 
                          text-sm font-medium text-blue-600 shadow-lg opacity-0 
                          group-hover:opacity-100 transition-opacity duration-300 
                          whitespace-nowrap">
-            Precisa de ajuda? <Sparkles className="w-4 h-4 inline-block ml-1" />
-          </span>
-        </button>
+              Precisa de ajuda? <Sparkles className="w-4 h-4 inline-block ml-1" />
+            </span>
+          </button>
+        </div>
       )}
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 
-                      transition-all duration-500 animate-[fadeIn_0.5s_ease-out]">
-          <div className="fixed bottom-6 right-6 w-96 bg-white rounded-2xl shadow-2xl 
-                        border border-blue-100 animate-[slideIn_0.5s_ease-out] z-50">
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50">
+          <div className="fixed bottom-0 right-0 w-full md:w-[400px] h-full md:h-[600px] 
+                        bg-white shadow-2xl transition-all duration-500 
+                        animate-[slideIn_0.5s_ease-out]">
             <div className="flex items-center justify-between p-4 bg-gradient-to-br 
-                          from-purple-600 via-blue-600 to-blue-700 text-white rounded-t-2xl">
+                          from-purple-600 via-blue-600 to-blue-700 text-white">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/10 rounded-full flex items-center 
                               justify-center backdrop-blur-sm group">
@@ -348,8 +351,8 @@ Como posso ajudar mais?`;
               </button>
             </div>
 
-            <div className="h-[500px] overflow-y-auto p-4 space-y-4 bg-gradient-to-b 
-                          from-blue-50/50 to-white">
+            <div className="h-[calc(100%-128px)] overflow-y-auto p-4 space-y-4 
+                          bg-gradient-to-b from-blue-50/50 to-white">
               {showForm ? (
                 <form onSubmit={handleFormSubmit} className="space-y-4 bg-white p-6 
                                                            rounded-xl shadow-sm animate-fadeIn">
@@ -452,9 +455,8 @@ Como posso ajudar mais?`;
             </div>
 
             {!showForm && (
-              <form onSubmit={handleChatSubmit} className="p-4 bg-white rounded-b-2xl 
-                                                         border-t border-gray-100">
-                <div className="flex gap-2">
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100">
+                <form onSubmit={handleChatSubmit} className="flex gap-2">
                   <input
                     type="text"
                     value={input}
@@ -474,8 +476,8 @@ Como posso ajudar mais?`;
                   >
                     <Send className="w-5 h-5" />
                   </button>
-                </div>
-              </form>
+                </form>
+              </div>
             )}
           </div>
         </div>
