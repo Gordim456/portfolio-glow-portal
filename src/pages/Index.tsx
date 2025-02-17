@@ -1,8 +1,7 @@
-
 import Header from "@/components/Header";
 import ImageSlider from "@/components/ImageSlider";
 import ChatBot from "@/components/ChatBot";
-import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase, Instagram, Facebook, Video } from "lucide-react";
+import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase, Instagram, Facebook, Video, Sparkles } from "lucide-react";
 
 const Index = () => {
   return (
@@ -12,6 +11,48 @@ const Index = () => {
       <main>
         <section id="home" className="pt-16">
           <ImageSlider />
+          <div className="max-w-7xl mx-auto px-4 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl 
+                            shadow-lg hover:shadow-xl transition-all duration-300 transform 
+                            hover:-translate-y-1">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 
+                              rounded-xl flex items-center justify-center mb-4">
+                  <Trophy className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Excelência Premiada</h3>
+                <p className="text-gray-600">
+                  +250 projetos entregues com sucesso e reconhecimento internacional em 
+                  desenvolvimento de software.
+                </p>
+              </div>
+              <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl 
+                            shadow-lg hover:shadow-xl transition-all duration-300 transform 
+                            hover:-translate-y-1">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 
+                              rounded-xl flex items-center justify-center mb-4">
+                  <Rocket className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Tecnologia de Ponta</h3>
+                <p className="text-gray-600">
+                  Utilizamos as mais recentes tecnologias e frameworks para desenvolver 
+                  soluções inovadoras.
+                </p>
+              </div>
+              <div className="p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl 
+                            shadow-lg hover:shadow-xl transition-all duration-300 transform 
+                            hover:-translate-y-1">
+                <div className="w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 
+                              rounded-xl flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Suporte Premium</h3>
+                <p className="text-gray-600">
+                  Equipe dedicada 24/7 para garantir o sucesso contínuo do seu projeto.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="about" className="py-20 bg-gradient-to-b from-secondary/20 to-white">
@@ -268,6 +309,68 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 
+                      bg-gradient-to-r from-purple-600 via-blue-600 to-blue-700 
+                      text-white px-6 py-3 rounded-full shadow-lg z-40 
+                      animate-bounce">
+          <p className="text-sm font-medium flex items-center gap-2">
+            <Sparkles className="w-4 h-4" />
+            <span>Transforme sua ideia em realidade - Fale com nossos especialistas</span>
+            <Check className="w-4 h-4" />
+          </p>
+        </div>
+
+        <div className="fixed left-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 z-40">
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full 
+                   flex items-center justify-center hover:scale-110 transition-all duration-300 
+                   hover:shadow-lg group"
+            aria-label="Instagram"
+          >
+            <Instagram className="w-6 h-6 text-white" />
+            <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
+                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 whitespace-nowrap">
+              Siga no Instagram
+            </span>
+          </a>
+          <a 
+            href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center 
+                   hover:scale-110 transition-all duration-300 hover:shadow-lg group"
+            aria-label="Facebook"
+          >
+            <Facebook className="w-6 h-6 text-white" />
+            <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
+                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 whitespace-nowrap">
+              Curta no Facebook
+            </span>
+          </a>
+          <a 
+            href="https://tiktok.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-12 h-12 bg-black rounded-full flex items-center justify-center 
+                   hover:scale-110 transition-all duration-300 hover:shadow-lg group"
+            aria-label="TikTok"
+          >
+            <Video className="w-6 h-6 text-white" />
+            <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
+                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 whitespace-nowrap">
+              Siga no TikTok
+            </span>
+          </a>
+        </div>
+
+        <ChatBot />
       </main>
 
       <footer className="bg-blue-900 text-white py-16">
@@ -284,34 +387,34 @@ const Index = () => {
                   href="https://instagram.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full 
+                  className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full 
                            flex items-center justify-center hover:scale-110 transition-all 
                            duration-300 hover:shadow-lg"
                   aria-label="Instagram"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <Instagram className="w-6 h-6 text-white" />
                 </a>
                 <a 
                   href="https://facebook.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-blue-600 rounded-full flex items-center 
+                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center 
                            justify-center hover:scale-110 transition-all duration-300 
                            hover:shadow-lg"
                   aria-label="Facebook"
                 >
-                  <Facebook className="w-5 h-5" />
+                  <Facebook className="w-6 h-6 text-white" />
                 </a>
                 <a 
                   href="https://tiktok.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-black rounded-full flex items-center 
+                  className="w-12 h-12 bg-black rounded-full flex items-center 
                            justify-center hover:scale-110 transition-all duration-300 
                            hover:shadow-lg"
                   aria-label="TikTok"
                 >
-                  <Video className="w-5 h-5" />
+                  <Video className="w-6 h-6 text-white" />
                 </a>
               </div>
             </div>
@@ -349,58 +452,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-
-      {/* Fixed Social Media Icons */}
-      <div className="fixed left-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 z-40">
-        <a 
-          href="https://instagram.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full 
-                   flex items-center justify-center hover:scale-110 transition-all duration-300 
-                   hover:shadow-lg group"
-          aria-label="Instagram"
-        >
-          <Instagram className="w-6 h-6 text-white" />
-          <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
-                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 whitespace-nowrap">
-            Siga no Instagram
-          </span>
-        </a>
-        <a 
-          href="https://facebook.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center 
-                   hover:scale-110 transition-all duration-300 hover:shadow-lg group"
-          aria-label="Facebook"
-        >
-          <Facebook className="w-6 h-6 text-white" />
-          <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
-                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 whitespace-nowrap">
-            Curta no Facebook
-          </span>
-        </a>
-        <a 
-          href="https://tiktok.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="w-12 h-12 bg-black rounded-full flex items-center justify-center 
-                   hover:scale-110 transition-all duration-300 hover:shadow-lg group"
-          aria-label="TikTok"
-        >
-          <Video className="w-6 h-6 text-white" />
-          <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
-                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
-                        transition-opacity duration-300 whitespace-nowrap">
-            Siga no TikTok
-          </span>
-        </a>
-      </div>
-
-      <ChatBot />
     </div>
   );
 };

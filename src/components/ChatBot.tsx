@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { MessageSquare, X, Send, Sparkles, Star } from "lucide-react";
 
@@ -21,28 +20,44 @@ interface Conversation {
   id?: number;
 }
 
-const initialBotMessage = `👋 Olá! Bem-vindo à GV Software!
+const initialBotMessage = `👋 Olá! Sou o assistente virtual da GV Software!
 
-🚀 Como podemos impulsionar seu negócio hoje?
+🚀 Estamos aqui para revolucionar seu negócio com:
 
-Especialidades:
-✨ Desenvolvimento Web Premium
-💼 Sistemas Empresariais Personalizados
-🎯 Consultoria Estratégica em Tecnologia
-🛠️ Suporte Técnico Especializado
-💡 Inovação Digital
-📊 Análise de Dados
+💻 Soluções Digitais:
+• Sites e Aplicativos Premium
+• E-commerce Avançado
+• Sistemas Personalizados
+• Inteligência Artificial
+• Apps Mobile
+• Dashboards Interativos
 
-🏆 Benefícios:
-• +250 Projetos Entregues com Sucesso
+🎯 Nossos Números:
+• +250 Projetos Entregues
 • +100 Clientes Satisfeitos
 • 98% Taxa de Satisfação
-• Equipe Especializada
-• Suporte 24/7
-• Tecnologias de Ponta
+• 24/7 Suporte Premium
+• 10+ Anos de Experiência
 
-📅 Quer conversar sobre seu projeto? 
-Estamos prontos para transformar suas ideias em realidade!`;
+💎 Diferenciais:
+• Tecnologias de Ponta
+• Equipe Especializada
+• Metodologias Ágeis
+• Suporte Dedicado
+• Consultoria Estratégica
+
+🏆 Reconhecimentos:
+• Prêmio Inovação Digital 2023
+• Top 10 Empresas de Software
+• Certificação ISO 9001
+• Parceiro Microsoft & Google
+
+💡 Como posso ajudar você hoje?
+1. Desenvolvimento de Projetos
+2. Consultoria Tecnológica
+3. Orçamentos
+4. Suporte Técnico
+5. Agendamento de Reunião`;
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -124,52 +139,140 @@ const ChatBot = () => {
       let responseText = "";
       const lowercaseInput = input.toLowerCase();
       
-      if (lowercaseInput.includes("preço") || lowercaseInput.includes("custo") || lowercaseInput.includes("valor")) {
-        responseText = `Obrigado pelo interesse! Para fornecer um orçamento preciso, precisamos entender melhor seu projeto. 
-        
-Podemos agendar uma reunião para discutir:
-• Requisitos do projeto
+      if (lowercaseInput.includes("preço") || lowercaseInput.includes("custo") || lowercaseInput.includes("valor") || lowercaseInput.includes("orçamento")) {
+        responseText = `💼 Excelente! Para fornecer um orçamento preciso e competitivo, precisamos entender melhor seu projeto.
+
+📊 Fatores que consideramos:
+• Escopo do projeto
 • Prazo desejado
 • Funcionalidades necessárias
 • Integrações requeridas
+• Nível de customização
+• Suporte necessário
 
-Como prefere fazer esta reunião?
+🤝 Benefícios inclusos:
+• Consultoria inicial gratuita
+• Suporte premium 24/7
+• Garantia de código
+• Treinamento da equipe
+• Manutenção preventiva
+
+📅 Podemos agendar uma reunião para discutir detalhes?
+Escolha o formato:
 1. Video chamada
 2. Presencial
 3. Ligação telefônica`;
       } 
       else if (lowercaseInput.includes("prazo") || lowercaseInput.includes("tempo")) {
-        responseText = `O prazo de desenvolvimento varia conforme a complexidade do projeto. 
+        responseText = `⏱️ Sobre nossos prazos de desenvolvimento:
 
-Fatores que consideramos:
-• Escopo do projeto
-• Número de funcionalidades
-• Complexidade das integrações
-• Requisitos técnicos
+📋 Estimativas comuns:
+• Landing Pages: 1-2 semanas
+• Sites institucionais: 2-4 semanas
+• E-commerce: 4-8 semanas
+• Sistemas empresariais: 8-16 semanas
+• Apps Mobile: 8-12 semanas
 
-Podemos fazer uma análise detalhada e fornecer um cronograma preciso após nossa primeira reunião.`;
+⚡ Fatores que otimizam o prazo:
+• Documentação clara
+• Feedback rápido
+• Metodologia ágil
+• Sprints semanais
+• Entregas incrementais
+
+🎯 Garantimos:
+• Cumprimento de deadlines
+• Comunicação transparente
+• Updates diários
+• Qualidade premium
+• Testes rigorosos
+
+Quer discutir um cronograma específico para seu projeto?`;
       }
       else if (lowercaseInput.includes("reunião") || lowercaseInput.includes("conversar")) {
-        responseText = `Ótimo! Podemos agendar uma reunião para entender melhor suas necessidades.
+        responseText = `📅 Ótimo! Vamos agendar uma reunião personalizada.
 
-Horários disponíveis:
+⏰ Horários disponíveis:
 • Segunda a Sexta: 9h às 18h
 • Sábado: 9h às 12h
 
-Por favor, indique sua preferência de:
-1. Data e horário
-2. Formato (presencial/online)
+📌 Formatos:
+1. Video chamada (Zoom/Meet/Teams)
+2. Presencial (Escritório SP)
+3. Ligação telefônica
+
+💡 Na reunião abordaremos:
+• Objetivos do projeto
+• Soluções técnicas
+• Prazos e custos
+• Demonstrações
+• Dúvidas específicas
+
+Por favor, indique:
+1. Data e horário preferidos
+2. Formato desejado
 3. Melhor contato`;
       }
+      else if (lowercaseInput.includes("tecnologia") || lowercaseInput.includes("tech") || lowercaseInput.includes("stack")) {
+        responseText = `🚀 Nossas Tecnologias de Ponta:
+
+💻 Frontend:
+• React/Next.js
+• Vue.js/Nuxt
+• TypeScript
+• Tailwind CSS
+• Material UI
+
+⚙️ Backend:
+• Node.js
+• Python
+• Java
+• .NET Core
+• GraphQL
+
+📱 Mobile:
+• React Native
+• Flutter
+• iOS/Swift
+• Android/Kotlin
+
+☁️ Cloud:
+• AWS
+• Google Cloud
+• Azure
+• Docker/Kubernetes
+
+🛠️ Extras:
+• CI/CD
+• Microsserviços
+• PWA
+• WebSockets
+• API REST
+
+Quer saber mais sobre alguma tecnologia específica?`;
+      }
       else {
-        responseText = `Obrigado pelo contato, ${userInfo.firstName}! 
+        responseText = `Olá ${userInfo.firstName}! 
 
-Para melhor atendê-lo, nossa equipe especializada entrará em contato através do email ${userInfo.email} em até 24 horas úteis.
+💫 Agradecemos seu interesse em nossos serviços!
 
-Enquanto isso, você pode:
-• Conhecer nosso portfólio de projetos
-• Ver casos de sucesso de nossos clientes
-• Explorar nossas soluções tecnológicas`;
+👨‍💼 Um especialista entrará em contato através do email ${userInfo.email} em até 24h úteis.
+
+📱 Enquanto isso, você pode:
+• Explorar nosso portfólio
+• Conhecer casos de sucesso
+• Ver demonstrações
+• Agendar uma reunião
+• Solicitar orçamento
+
+🔍 Temas populares:
+1. Desenvolvimento Web
+2. Apps Mobile
+3. E-commerce
+4. Sistemas Empresariais
+5. Consultoria Tech
+
+Como posso ajudar mais?`;
       }
 
       const botResponse: ChatMessage = {
@@ -208,7 +311,7 @@ Enquanto isso, você pode:
                          text-sm font-medium text-blue-600 shadow-lg opacity-0 
                          group-hover:opacity-100 transition-opacity duration-300 
                          whitespace-nowrap">
-            Fale Conosco! <Sparkles className="w-4 h-4 inline-block ml-1" />
+            Precisa de ajuda? <Sparkles className="w-4 h-4 inline-block ml-1" />
           </span>
         </button>
       )}
