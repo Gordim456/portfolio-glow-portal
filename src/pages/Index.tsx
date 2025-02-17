@@ -1,7 +1,8 @@
+
 import Header from "@/components/Header";
 import ImageSlider from "@/components/ImageSlider";
 import ChatBot from "@/components/ChatBot";
-import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase, Instagram, Facebook, TikTok } from "lucide-react";
+import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase, Instagram, Facebook, Video } from "lucide-react";
 
 const Index = () => {
   return (
@@ -310,7 +311,7 @@ const Index = () => {
                            hover:shadow-lg"
                   aria-label="TikTok"
                 >
-                  <TikTok className="w-5 h-5" />
+                  <Video className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -349,6 +350,7 @@ const Index = () => {
         </div>
       </footer>
 
+      {/* Fixed Social Media Icons */}
       <div className="fixed left-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 z-40">
         <a 
           href="https://instagram.com" 
@@ -389,7 +391,7 @@ const Index = () => {
                    hover:scale-110 transition-all duration-300 hover:shadow-lg group"
           aria-label="TikTok"
         >
-          <TikTok className="w-6 h-6 text-white" />
+          <Video className="w-6 h-6 text-white" />
           <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
                         text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
                         transition-opacity duration-300 whitespace-nowrap">
