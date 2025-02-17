@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import ImageSlider from "@/components/ImageSlider";
 import ChatBot from "@/components/ChatBot";
-import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase } from "lucide-react";
+import { Code, Laptop, Rocket, PhoneCall, Mail, MapPin, Users, Trophy, Clock, Check, Briefcase, Instagram, Facebook, TikTok } from "lucide-react";
 
 const Index = () => {
   return (
@@ -279,14 +279,42 @@ const Index = () => {
                 Especialistas em desenvolvimento de software e consultoria em tecnologia.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                  {/* Ícone LinkedIn */}
+                <a 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full 
+                           flex items-center justify-center hover:scale-110 transition-all 
+                           duration-300 hover:shadow-lg"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                  {/* Ícone GitHub */}
+                <a 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-blue-600 rounded-full flex items-center 
+                           justify-center hover:scale-110 transition-all duration-300 
+                           hover:shadow-lg"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a 
+                  href="https://tiktok.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-black rounded-full flex items-center 
+                           justify-center hover:scale-110 transition-all duration-300 
+                           hover:shadow-lg"
+                  aria-label="TikTok"
+                >
+                  <TikTok className="w-5 h-5" />
                 </a>
               </div>
             </div>
+
             <div>
               <h4 className="text-lg font-semibold mb-6">Links Rápidos</h4>
               <ul className="space-y-4">
@@ -296,6 +324,7 @@ const Index = () => {
                 <li><a href="#contact" className="text-blue-100 hover:text-white transition-colors">Contato</a></li>
               </ul>
             </div>
+
             <div>
               <h4 className="text-lg font-semibold mb-6">Contato</h4>
               <div className="space-y-4">
@@ -319,6 +348,55 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <div className="fixed left-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-4 z-40">
+        <a 
+          href="https://instagram.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full 
+                   flex items-center justify-center hover:scale-110 transition-all duration-300 
+                   hover:shadow-lg group"
+          aria-label="Instagram"
+        >
+          <Instagram className="w-6 h-6 text-white" />
+          <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
+                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 whitespace-nowrap">
+            Siga no Instagram
+          </span>
+        </a>
+        <a 
+          href="https://facebook.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center 
+                   hover:scale-110 transition-all duration-300 hover:shadow-lg group"
+          aria-label="Facebook"
+        >
+          <Facebook className="w-6 h-6 text-white" />
+          <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
+                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 whitespace-nowrap">
+            Curta no Facebook
+          </span>
+        </a>
+        <a 
+          href="https://tiktok.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-12 h-12 bg-black rounded-full flex items-center justify-center 
+                   hover:scale-110 transition-all duration-300 hover:shadow-lg group"
+          aria-label="TikTok"
+        >
+          <TikTok className="w-6 h-6 text-white" />
+          <span className="absolute left-full ml-4 px-4 py-2 bg-white rounded-lg shadow-lg 
+                        text-gray-800 text-sm font-medium opacity-0 group-hover:opacity-100 
+                        transition-opacity duration-300 whitespace-nowrap">
+            Siga no TikTok
+          </span>
+        </a>
+      </div>
 
       <ChatBot />
     </div>
