@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { MessageSquare, X, Send, Sparkles, Star } from "lucide-react";
 
@@ -306,9 +305,9 @@ Como posso ajudar mais?`;
             className="bg-gradient-to-br from-purple-600 via-blue-600 to-blue-700 
                      text-white p-4 rounded-full shadow-lg hover:shadow-xl 
                      transition-all duration-500 hover:scale-110
-                     group relative"
+                     group relative animate-bounce"
           >
-            <MessageSquare className="w-6 h-6" />
+            <MessageSquare className="w-6 h-6 animate-pulse" />
             <span className="absolute -top-12 right-0 bg-white px-4 py-2 rounded-full 
                          text-sm font-medium text-blue-600 shadow-lg opacity-0 
                          group-hover:opacity-100 transition-opacity duration-300 
@@ -320,12 +319,14 @@ Como posso ajudar mais?`;
       )}
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50">
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 
+                     animate-[fadeIn_0.3s_ease-out]">
           <div className="fixed bottom-0 right-0 w-full md:w-[400px] h-full md:h-[600px] 
-                        bg-white shadow-2xl transition-all duration-500 
-                        animate-[slideIn_0.5s_ease-out]">
+                       bg-white shadow-2xl transition-all duration-500 rounded-t-[2rem]
+                       animate-[slideIn_0.5s_ease-out] overflow-hidden">
             <div className="flex items-center justify-between p-4 bg-gradient-to-br 
-                          from-purple-600 via-blue-600 to-blue-700 text-white">
+                          from-purple-600 via-blue-600 to-blue-700 text-white 
+                          rounded-t-[2rem]">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-white/10 rounded-full flex items-center 
                               justify-center backdrop-blur-sm group">
@@ -337,15 +338,15 @@ Como posso ajudar mais?`;
                     <Star className="w-4 h-4 text-yellow-300 animate-pulse" />
                   </h3>
                   <span className="text-xs text-white/80 flex items-center gap-1">
-                    <span className="w-2 h-2 bg-green-400 rounded-full"></span>
+                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                     Online agora
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/80 hover:text-white transition-colors 
-                         hover:rotate-90 duration-300"
+                className="text-white/80 hover:text-white transition-colors p-2
+                         hover:rotate-90 duration-300 rounded-full hover:bg-white/10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -355,7 +356,7 @@ Como posso ajudar mais?`;
                           bg-gradient-to-b from-blue-50/50 to-white">
               {showForm ? (
                 <form onSubmit={handleFormSubmit} className="space-y-4 bg-white p-6 
-                                                           rounded-xl shadow-sm animate-fadeIn">
+                                                           rounded-2xl shadow-sm animate-fadeIn">
                   <div className="text-center mb-6">
                     <h4 className="font-bold text-gray-800 text-lg">Bem-vindo à GV Software!</h4>
                     <p className="text-sm text-gray-500 mt-2">
@@ -369,7 +370,7 @@ Como posso ajudar mais?`;
                         placeholder="Seu nome"
                         value={formData.firstName}
                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-lg 
+                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-xl
                                  focus:outline-none focus:ring-2 focus:ring-blue-500/20 
                                  focus:border-blue-500 transition-all"
                         required
@@ -382,7 +383,7 @@ Como posso ajudar mais?`;
                         placeholder="Seu sobrenome"
                         value={formData.lastName}
                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-lg 
+                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-xl 
                                  focus:outline-none focus:ring-2 focus:ring-blue-500/20 
                                  focus:border-blue-500 transition-all"
                         required
@@ -395,7 +396,7 @@ Como posso ajudar mais?`;
                         placeholder="Seu email profissional"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-lg 
+                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-xl 
                                  focus:outline-none focus:ring-2 focus:ring-blue-500/20 
                                  focus:border-blue-500 transition-all"
                         required
@@ -407,7 +408,7 @@ Como posso ajudar mais?`;
                         placeholder="Como podemos ajudar seu negócio?"
                         value={formData.reason}
                         onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-lg 
+                        className="w-full p-3 pl-10 bg-gray-50 border border-gray-200 rounded-xl 
                                  focus:outline-none focus:ring-2 focus:ring-blue-500/20 
                                  focus:border-blue-500 transition-all resize-none h-24"
                         required
@@ -418,7 +419,7 @@ Como posso ajudar mais?`;
                   <button
                     type="submit"
                     className="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-blue-700 
-                             text-white py-3 rounded-lg hover:shadow-lg transition-all duration-300 
+                             text-white py-3 rounded-xl hover:shadow-lg transition-all duration-300 
                              transform hover:-translate-y-1 font-medium flex items-center 
                              justify-center gap-2"
                   >
@@ -440,10 +441,6 @@ Como posso ajudar mais?`;
                           message.isBot
                             ? "bg-gradient-to-br from-blue-50 to-white text-gray-800 shadow-sm border border-blue-100"
                             : "bg-gradient-to-r from-purple-600 via-blue-600 to-blue-700 text-white"
-                        } ${
-                          message.isBot
-                            ? "rounded-tl-sm"
-                            : "rounded-tr-sm"
                         } transform transition-all duration-300 hover:scale-[1.02]`}
                       >
                         <p className="whitespace-pre-line">{message.text}</p>
