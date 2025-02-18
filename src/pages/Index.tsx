@@ -1,8 +1,7 @@
-
 import Header from "@/components/Header";
 import ImageSlider from "@/components/ImageSlider";
 import ChatBot from "@/components/ChatBot";
-import { Code, Laptop, Rocket, Users, Trophy, Star, Check, Building2, ChartBar, BarChart3, Lightbulb, Shield, Target } from "lucide-react";
+import { Code, Laptop, Rocket, Users, Trophy, Star, Check, Building2, ChartBar, BarChart3, Lightbulb, Shield, Target, ChevronRight } from "lucide-react";
 
 const Index = () => {
   return (
@@ -240,6 +239,109 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Portfólio */}
+        <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Nosso Portfólio</h2>
+              <p className="text-xl text-gray-600">Projetos que transformam negócios</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "App de Delivery",
+                  client: "FoodExpress",
+                  image: "https://images.unsplash.com/photo-1605787020600-b9ebd5df1d07",
+                  description: "Aplicativo completo de delivery com geolocalização",
+                  tags: ["React Native", "Node.js", "MongoDB"]
+                },
+                {
+                  title: "Sistema de Gestão",
+                  client: "TechCorp",
+                  image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+                  description: "ERP personalizado para gestão empresarial",
+                  tags: ["React", "TypeScript", "PostgreSQL"]
+                },
+                {
+                  title: "E-commerce B2B",
+                  client: "ComercialTech",
+                  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+                  description: "Plataforma B2B com integração multi-fornecedores",
+                  tags: ["Next.js", "Python", "AWS"]
+                },
+                {
+                  title: "App Educacional",
+                  client: "EduTech",
+                  image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
+                  description: "Plataforma de ensino online gamificada",
+                  tags: ["Flutter", "Firebase", "Machine Learning"]
+                },
+                {
+                  title: "Sistema Financeiro",
+                  client: "FinanceBank",
+                  image: "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+                  description: "Dashboard financeiro com análise em tempo real",
+                  tags: ["Vue.js", "Java", "Oracle"]
+                },
+                {
+                  title: "App de Saúde",
+                  client: "HealthCare",
+                  image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d",
+                  description: "Aplicativo para gestão de clínicas médicas",
+                  tags: ["React Native", "GraphQL", "MongoDB"]
+                }
+              ].map((project, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl 
+                           transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className="relative">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
+                      <div className="absolute bottom-4 left-4">
+                        <p className="text-white text-sm font-medium">{project.client}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-gray-600 mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r 
+                         from-blue-600 to-purple-600 text-white rounded-full 
+                         hover:shadow-lg transition-all duration-300 transform 
+                         hover:scale-105"
+              >
+                Ver Mais Projetos
+                <ChevronRight className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </section>
