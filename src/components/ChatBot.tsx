@@ -251,6 +251,84 @@ Por favor, indique:
 
 Quer saber mais sobre alguma tecnologia específica?`;
       }
+      else if (lowercaseInput.includes("segurança") || lowercaseInput.includes("proteção") || lowercaseInput.includes("dados")) {
+        responseText = `🔒 Segurança é nossa prioridade:
+
+🛡️ Proteção de Dados:
+• Criptografia de ponta a ponta
+• Certificados SSL/TLS
+• Backups automáticos
+• Monitoramento 24/7
+• Firewall avançado
+
+📋 Conformidades:
+• LGPD
+• GDPR
+• ISO 27001
+• PCI DSS
+• SOC 2
+
+🔐 Práticas de Segurança:
+• Autenticação em 2 fatores
+• Logs de auditoria
+• Testes de penetração
+• Atualizações regulares
+• Análise de vulnerabilidades
+
+Quer saber mais sobre nossas práticas de segurança?`;
+      }
+      else if (lowercaseInput.includes("suporte") || lowercaseInput.includes("ajuda") || lowercaseInput.includes("assistência")) {
+        responseText = `🎯 Nosso Suporte Premium:
+
+💪 Disponibilidade:
+• Atendimento 24/7
+• Resposta em até 1h
+• Monitoramento proativo
+• Suporte multilíngue
+• Equipe dedicada
+
+🛠️ Canais de Atendimento:
+• Chat ao vivo
+• E-mail prioritário
+• Telefone direto
+• Video chamada
+• WhatsApp Business
+
+📈 Diferenciais:
+• Base de conhecimento
+• Tutoriais em vídeo
+• Dashboard de status
+• Relatórios mensais
+• Manutenção preventiva
+
+Como podemos ajudar você agora?`;
+      }
+      else if (lowercaseInput.includes("portfolio") || lowercaseInput.includes("projeto") || lowercaseInput.includes("case")) {
+        responseText = `🌟 Conheça nossos projetos de sucesso:
+
+🏆 Cases Recentes:
+• App de Delivery: +2M downloads
+• E-commerce B2B: R$50M/mês
+• Sistema ERP: 500+ empresas
+• App Educacional: 1M+ usuários
+• Fintech: +R$100M processados
+
+💡 Diferenciais:
+• UX/UI premium
+• Performance otimizada
+• Escalabilidade
+• Inovação constante
+• Resultados comprovados
+
+🎯 Setores:
+• Varejo
+• Educação
+• Saúde
+• Finanças
+• Logística
+
+Quer conhecer cases específicos do seu setor?`;
+      }
       else {
         responseText = `Olá ${userInfo.firstName}! 
 
