@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,25 +11,25 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-primary">
+            <Link to="/" className="text-2xl font-bold text-primary">
               GV Software
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-600 hover:text-primary transition-colors">
+            <Link to="/" className="text-gray-600 hover:text-primary transition-colors">
               Início
-            </a>
-            <a href="#about" className="text-gray-600 hover:text-primary transition-colors">
+            </Link>
+            <Link to="/about" className="text-gray-600 hover:text-primary transition-colors">
               Sobre
-            </a>
-            <a href="#portfolio" className="text-gray-600 hover:text-primary transition-colors">
+            </Link>
+            <Link to="/portfolio" className="text-gray-600 hover:text-primary transition-colors">
               Portfólio
-            </a>
-            <a href="#contact" className="text-gray-600 hover:text-primary transition-colors">
+            </Link>
+            <Link to="/contact" className="text-gray-600 hover:text-primary transition-colors">
               Contato
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -44,34 +45,34 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 animate-slideIn">
             <div className="flex flex-col space-y-4">
-              <a
-                href="#home"
+              <Link
+                to="/"
                 className="text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Início
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 className="text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sobre
-              </a>
-              <a
-                href="#portfolio"
+              </Link>
+              <Link
+                to="/portfolio"
                 className="text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Portfólio
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contato
-              </a>
+              </Link>
             </div>
           </nav>
         )}
