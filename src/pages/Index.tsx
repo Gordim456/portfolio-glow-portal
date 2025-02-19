@@ -13,12 +13,19 @@ const Index = () => {
           <ImageSlider />
         </section>
 
-        {/* Portfólio */}
-        <section className="py-20 bg-gradient-to-b from-white to-blue-50">
+        {/* Portfólio em Destaque */}
+        <section className="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Projetos em Destaque</h2>
-              <p className="text-xl text-gray-600">Criando soluções digitais inovadoras</p>
+            <div className="text-center mb-16 animate-fade-up">
+              <span className="px-4 py-1 bg-white/10 rounded-full text-sm font-medium mb-4 inline-block">
+                PROJETOS EM DESTAQUE
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
+                Transformando Ideias em Realidade
+              </h2>
+              <p className="text-xl text-gray-300">
+                Soluções digitais que impulsionam o sucesso dos nossos clientes
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -29,7 +36,8 @@ const Index = () => {
                   image: "https://images.unsplash.com/photo-1605787020600-b9ebd5df1d07",
                   description: "Aplicativo completo de delivery com geolocalização",
                   tags: ["React Native", "Node.js", "MongoDB"],
-                  highlight: "2M+ Downloads"
+                  highlight: "2M+ Downloads",
+                  color: "from-blue-500 to-cyan-500"
                 },
                 {
                   title: "E-commerce B2B",
@@ -37,7 +45,8 @@ const Index = () => {
                   image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
                   description: "Plataforma B2B com integração multi-fornecedores",
                   tags: ["Next.js", "Python", "AWS"],
-                  highlight: "R$50M/mês"
+                  highlight: "R$50M/mês",
+                  color: "from-purple-500 to-pink-500"
                 },
                 {
                   title: "Sistema Financeiro",
@@ -45,39 +54,43 @@ const Index = () => {
                   image: "https://images.unsplash.com/photo-1563986768609-322da13575f3",
                   description: "Dashboard financeiro com análise em tempo real",
                   tags: ["Vue.js", "Java", "Oracle"],
-                  highlight: "R$100M+ Processados"
+                  highlight: "R$100M+ Processados",
+                  color: "from-green-500 to-emerald-500"
                 }
               ].map((project, index) => (
                 <div 
                   key={index}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl 
-                           transition-all duration-500 transform hover:-translate-y-2"
+                  className="group modern-card bg-gray-800/50 backdrop-blur-sm 
+                           border border-gray-700/50 hover:border-gray-600"
                 >
                   <div className="relative overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-56 object-cover transform transition-transform duration-500 group-hover:scale-110"
+                      className="modern-card-image"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent 
-                                  opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <p className="text-white font-semibold">{project.client}</p>
-                        <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm inline-block mt-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 
+                                  to-transparent opacity-0 group-hover:opacity-100 transition-all 
+                                  duration-500 flex items-end p-6">
+                      <div>
+                        <p className="text-white font-semibold mb-2">{project.client}</p>
+                        <div className={`bg-gradient-to-r ${project.color} text-white px-3 py-1 
+                                      rounded-full text-sm inline-block`}>
                           {project.highlight}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">{project.title}</h3>
-                    <p className="text-gray-600 mb-4">{project.description}</p>
+                  <div className="modern-card-content">
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-400 
+                               transition-colors">{project.title}</h3>
+                    <p className="text-gray-400">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium 
-                                   hover:bg-blue-100 transition-colors duration-300"
+                          className="modern-tag bg-gray-700 text-gray-300 
+                                   hover:bg-gray-600"
                         >
                           {tag}
                         </span>
@@ -88,15 +101,13 @@ const Index = () => {
               ))}
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-16">
               <a
                 href="#more-projects"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 
-                         to-purple-600 text-white rounded-full hover:shadow-xl transition-all 
-                         duration-300 transform hover:scale-105 hover:from-blue-700 hover:to-purple-700"
+                className="button-gradient group inline-flex items-center gap-2"
               >
                 Ver Todos os Projetos
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>
